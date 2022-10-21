@@ -1,4 +1,3 @@
-from pickle import FALSE
 import pygame
 
 class Ship:
@@ -7,7 +6,8 @@ class Ship:
     def __init__(self, ai_game):
         """Initialize the ship and set its starting position."""
         self.screen = ai_game.screen
-        self.screen_rect = ai_game.settings
+        self.settings = ai_game.settings
+        self.screen_rect = ai_game.screen.get_rect()
 
         # Load the ship image and get its rect.
         self.image = pygame.image.load('image/ship.bmp')
@@ -29,7 +29,7 @@ class Ship:
         if self.moving_right and self.rect.right < self.screen_rect.right:
             self.x += self.settings.ship_speed
         if self.moving_left and self.rect.left > 0:
-            self.x += self.settings.ship_speed
+            self.x -= self.settings.ship_speed
         # Update rect object from self.x.
         self.rect.x = self.x
 
